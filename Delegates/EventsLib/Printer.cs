@@ -19,6 +19,18 @@ namespace EventsLib
 
     public class Printer
     {
+        public Printer()
+        {
+            Name = Guid.NewGuid().ToString();
+        }
+
+        public Printer(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; private set; }
+
         public event EventHandler PrintStarted;
         public event EventHandler PrintFinished;
         public event EventHandler<PrintingEventArgs> Printing;

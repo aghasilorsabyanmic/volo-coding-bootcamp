@@ -11,6 +11,18 @@ namespace Events
     {
         static void Main(string[] args)
         {
+            try
+            {
+                Start();
+            }
+            catch
+            {
+                
+            }
+        }
+
+        private static void Start()
+        {
             var hp = new Printer();
 
             hp.PrintStarted += Hp_PrintStarted;
@@ -27,6 +39,7 @@ namespace Events
             catch (ArgumentOutOfRangeException exception)
             {
                 Console.WriteLine($"Opps! Wront argument {exception.ParamName}.{Environment.NewLine}Message: {exception.Message}");
+                throw new Exception("",exception);
             }
             catch (Exception exception)
             {
@@ -40,22 +53,26 @@ namespace Events
 
         private static void Hp_PrintFailed(object sender, PrintFailedEventArgs e)
         {
-            Console.WriteLine($"Print failed. Remaining {e.RemainingPages} pages");
+            var printer = sender as Printer;
+            Console.WriteLine($"{printer?.Name}: Print failed. Remaining {e.RemainingPages} pages");
         }
 
         private static void Hp_Printing(object sender, PrintingEventArgs e)
         {
-            Console.WriteLine($"Printing page N{e.CurrentPage}");
+            var printer = sender as Printer;
+            Console.WriteLine($"{printer?.Name}: Printing page N{e.CurrentPage}");
         }
 
         private static void Hp_PrintFinished(object sender, EventArgs e)
         {
-            Console.WriteLine("Print Finished");
+            var printer = sender as Printer;
+            Console.WriteLine($"{printer?.Name}: Print Finished");
         }
 
         private static void Hp_PrintStarted(object sender, EventArgs e)
         {
-            Console.WriteLine("Print Started");
+            var printer = sender as Printer;
+            Console.WriteLine($"{printer?.Name}: Print Started");
         }
     }
 }
