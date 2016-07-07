@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace HtmlSaver
 {
@@ -22,6 +23,8 @@ namespace HtmlSaver
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Stopwatch watch = new Stopwatch();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +37,12 @@ namespace HtmlSaver
             {
                 try
                 {
-                    var text = await client.GetStringAsync(textBoxUrl.Text);
+                    var task = client.GetStringAsync(textBoxUrl.Text);
+                    textBoxHtml.Text = "Please wait...";
+                    watch.Start();
+                    Debug.WriteLine("Before await");
+                    var text = await task;
+                    Debug.WriteLine("After await");
                     textBoxHtml.Text = text;
                     var dir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                     var path = System.IO.Path.Combine(dir, "index.html");
@@ -48,11 +56,18 @@ namespace HtmlSaver
                 {
                     MessageBox.Show($"Unknown exception: {exception.Message}");
                 }
+                finally
+                {
+                    watch.Stop();
+                    MessageBox.Show(watch.ElapsedMilliseconds.ToString());
+                }
             }
         }
 
         private void textBoxUrl_TextChanged(object sender, TextChangedEventArgs e)
         {
+            Debug.WriteLine("Text changed");
+
             if(Uri.IsWellFormedUriString(textBoxUrl.Text, UriKind.Absolute))
             {
                 btnGrabHtml.IsEnabled = true;
