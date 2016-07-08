@@ -46,6 +46,12 @@ namespace IEnumerableVolo
             Console.ReadKey();
         }
 
+        public static void DoWork()
+        {
+            var range = Enumerable.Range(1, 10);
+            RandomizerAlt.Randomize(range);
+        }
+
         public static System.Collections.Generic.IEnumerable<int> Power(int number, int exponent)
         {
             int result = 1;
@@ -84,37 +90,5 @@ namespace IEnumerableVolo
         }
     }
 
-    public class Randomizer<T> : IEnumerable<T>
-    {
-        public Randomizer(int capacity)
-        {
-            values = new T[capacity];
-        }
-
-        private int current = 0;
-
-        private T[] values;
-
-        public void Add(T value)
-        {
-            if(current == values.Length)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            values[current++] = value;
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            for (int i = 0; i < values.Length; i++)
-            {
-                yield return values[i];
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-    }
+    
 }
