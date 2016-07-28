@@ -13,6 +13,7 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             var books = BookFactory.GetBooks().Skip(5).Take(10).ToList();
+            ViewBag.Title = "Books List";
 
             return View(books);
         }
