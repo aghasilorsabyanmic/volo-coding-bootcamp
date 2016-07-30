@@ -13,7 +13,7 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="Issued" Type="datetime" />
-          <Property Name="CouponCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CouponCode" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityContainer Name="MvcStoreModelStoreContainer">
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -33,7 +33,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Issued" Type="DateTime" Precision="3" />
-          <Property Name="CouponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CouponCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

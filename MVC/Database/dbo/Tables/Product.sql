@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Product]
+(
+	[Id] NVARCHAR(128) NOT NULL PRIMARY KEY,
+	[Name] NVARCHAR(MAX) NOT NULL,
+	[Price] MONEY NOT NULL,
+	[Issued] DATETIME NULL,
+	[CouponCode] NVARCHAR(128) NULL
+)
