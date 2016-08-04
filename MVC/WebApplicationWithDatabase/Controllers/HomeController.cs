@@ -10,11 +10,13 @@ namespace WebApplicationWithDatabase.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Action = "Index";
             return View();
         }
 
         public ActionResult About()
         {
+            ViewBag.Action = "About";
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -22,6 +24,7 @@ namespace WebApplicationWithDatabase.Controllers
 
         public ActionResult Contact()
         {
+            ViewBag.Action = "Contact";
             ViewBag.Message = "Your contact page.";
 
             return View();

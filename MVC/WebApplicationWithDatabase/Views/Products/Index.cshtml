@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebApplicationWithDatabase.Models.Product>
+﻿@using WebApplicationWithDatabase.MyHelpers;
+@model IEnumerable<WebApplicationWithDatabase.Models.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -49,3 +50,14 @@
 }
 
 </table>
+
+@{ 
+    int current = ViewBag.Page;
+    int size = ViewBag.PageSize;
+    int total = ViewBag.Count;
+}
+
+@Html.Pagination(current, size, total)
+
+
+

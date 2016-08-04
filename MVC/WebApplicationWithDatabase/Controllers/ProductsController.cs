@@ -42,7 +42,18 @@ namespace WebApplicationWithDatabase.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View((await db.Products.ToListAsync()).Skip(page * pageSize).Take(pageSize));
+            var count = await db.Products.CountAsync();
+
+            var products = await db.Products
+                .OrderBy(p => p.Name)
+                .Skip(page * pageSize)
+                .Take(pageSize).ToListAsync();
+
+            ViewBag.Page = page;
+            ViewBag.Count = count;
+            ViewBag.PageSize = pageSize;
+
+            return View(products);
         }
 
         // GET: Products/Details/5

@@ -1,0 +1,12 @@
+﻿<aside>
+    <div class="list-group">
+        @Html.ActionLink("Home", "Index", "Home", null,
+       new { @class = $"list-group-item{ (ViewBag.Action == "Index" ? " active" : "")}" })
+        @Html.ActionLink("About", "About", "Home", null,
+       new { @class = $"list-group-item{ (ViewBag.Action == "About" ? " active" : "")}" })
+        @Html.ActionLink("Contact", "Contact", "Home", null,
+       new { @class = $"list-group-item{ (ViewBag.Action == "Contact" ? " active" : "")}" })
+    </div>
+</aside>
+
+

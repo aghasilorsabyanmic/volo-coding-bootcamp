@@ -1,7 +1,16 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="row">
+    <div class="col-md-6">
+        @{Html.RenderPartial("_PartialSidebar");}
+    </div>
+    <div class="col-md-6">
+        <h2>@ViewBag.Title.</h2>
+        <h3>@ViewBag.Message</h3>
+
+        <p>Use this area to provide additional information.</p>
+    </div>
+</div>
+
